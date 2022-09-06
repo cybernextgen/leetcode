@@ -1,12 +1,14 @@
+from dataclasses import dataclass
+from email.generator import Generator
 from typing import Dict, Iterator, List
 import unittest
 import re
 
 data = [
-    ("t", True),
-    ("f", False),
-    ("!(t)", False),
-    ("!(f)", True),
+    # ("t", True),
+    # ("f", False),
+    # ("!(t)", False),
+    # ("!(f)", True),
     ("|(t,f)", True),
     ("&(t,f)", False),
     ("|(&(t,f,t),!(t))", False),
