@@ -18,8 +18,6 @@ data = [
 class Solution:
     operator_regex = re.compile(r"((?P<operator>[!&|])\((?P<arguments>.*)\))")
 
-    
-
     def parseBoolExpr(self, expression: str) -> bool:
         search_result = self.operator_regex.search(expression)
 
