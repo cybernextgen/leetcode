@@ -47,8 +47,8 @@ class Solution2:
         self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
         addition = 0
-        first_result_node = None
-        prev_result_node = None
+        list_head = ListNode()
+        prev_result_node = list_head
         while l1 or l2 or addition:
             current_result_node = ListNode()
             l1val = 0
@@ -61,19 +61,13 @@ class Solution2:
                 l2val = l2.val
                 l2 = l2.next
 
-            sum = l1val + l2val + addition
-            if sum >= 10:
-                addition = 1
-                current_result_node.val = sum % 10
-            else:
-                addition = 0
-                current_result_node.val = sum
-            if not first_result_node:
-                first_result_node = current_result_node
-            elif prev_result_node:
-                prev_result_node.next = current_result_node
+            current_sum = l1val + l2val + addition
+            current_result_node.val = current_sum % 10
+            addition = int(current_sum * 0.1)
+
+            prev_result_node.next = current_result_node
             prev_result_node = current_result_node
-        return first_result_node
+        return list_head.next
 
 
 if __name__ == "__main__":
