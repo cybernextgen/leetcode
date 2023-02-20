@@ -14,20 +14,15 @@ data = (
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         left_index = 0
-        right_index = len(nums) - 1
-        median_index = 0
-        median_element = 0
-        while left_index <= right_index:
+        right_index = len(nums)
+        while left_index < right_index:
             median_index = left_index + (right_index - left_index) // 2
             median_element = nums[median_index]
             if median_element >= target:
-                right_index = median_index - 1
+                right_index = median_index
                 continue
             left_index = median_index + 1
-        if median_element >= target:
-            return median_index
-        else:
-            return median_index + 1
+        return left_index
 
 
 class TestCase(unittest.TestCase):
