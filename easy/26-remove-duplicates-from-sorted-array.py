@@ -5,9 +5,7 @@ data = (([0, 0, 1, 1, 1, 2, 2, 3, 3, 4], 5, [0, 1, 2, 3, 4]),)
 
 
 class Solution:
-    def removeDuplicates(
-        self, nums: List[int], duplicate_placeholder: int = 127
-    ) -> int:
+    def removeDuplicates(self, nums: List[int]) -> int:
         prev_element = nums[0]
         next_index = 1
         for i in range(1, len(nums)):
