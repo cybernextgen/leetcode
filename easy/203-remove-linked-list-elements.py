@@ -3,16 +3,16 @@ from typing import Optional
 from utils.list_node import ListNode, LinkedListIterator, linked_list_to_values_list
 
 data = (
-    # (
-    #     ListNode(
-    #         1,
-    #         ListNode(
-    #             2, ListNode(6, ListNode(3, ListNode(4, ListNode(5, ListNode(6)))))
-    #         ),
-    #     ),
-    #     6,
-    #     [1, 2, 3, 4, 5],
-    # ),
+    (
+        ListNode(
+            1,
+            ListNode(
+                2, ListNode(6, ListNode(3, ListNode(4, ListNode(5, ListNode(6)))))
+            ),
+        ),
+        6,
+        [1, 2, 3, 4, 5],
+    ),
     (None, 1, []),
     (ListNode(7, ListNode(7, ListNode(7, ListNode(7)))), 7, []),
 )
