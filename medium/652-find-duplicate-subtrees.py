@@ -26,23 +26,25 @@ class Solution:
         self, root: Optional[TreeNode]
     ) -> List[Optional[TreeNode]]:
         result = []
-        hash = ""
         if not root:
             return result
+
+        node_hash = ""
         for child, child_dir in ((root.left, "l"), (root.right, "r")):
             if child:
                 result += self.findDuplicateSubtrees(child)
-                hash += self.prev_node_hash + child_dir
+                node_hash += self.prev_node_hash + child_dir
                 self.prev_node_hash = ""
-        hash += str(root.val)
-        self.prev_node_hash = hash
-        visited_node = self.visited_nodes.get(hash)
+
+        node_hash += str(root.val)
+        self.prev_node_hash = node_hash
+        visited_node = self.visited_nodes.get(node_hash)
         if visited_node:
             if visited_node["count"] == 1:
                 result.append(visited_node["node"])
             visited_node["count"] += 1
         else:
-            self.visited_nodes[hash] = {"node": root, "count": 1}
+            self.visited_nodes[node_hash] = {"node": root, "count": 1}
         return result
 
 
