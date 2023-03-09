@@ -35,9 +35,21 @@ class Solution1:
         return None
 
 
+class Solution2:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        while head:
+            next_node = head.next
+            if next_node == head:
+                return head
+
+            head.next = head
+            head = next_node
+        return None
+
+
 class Test(unittest.TestCase):
     def test_parse(self):
-        s = Solution1()
+        s = Solution2()
 
         for input_data, result in data:
             self.assertEqual(s.detectCycle(input_data), result)
