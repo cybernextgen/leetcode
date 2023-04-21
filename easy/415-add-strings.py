@@ -5,14 +5,15 @@ data = (
     ("11", "123", "134"),
     ("456", "77", "533"),
     ("22", "", "22"),
-    ("990", "11", "1001")
+    ("990", "11", "1001"),
 )
+
 
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
         if len(num2) > len(num1):
             num1, num2 = num2, num1
-        
+
         if not num2:
             return num1
 
@@ -29,10 +30,11 @@ class Solution:
                 s = s - 10
             else:
                 carry = 0
-            result = f'{s}{result}'
+            result = f"{s}{result}"
         if carry:
-            return f'1{result}'
+            return f"1{result}"
         return result
+
 
 class Test(unittest.TestCase):
     def test_parse(self):
@@ -40,6 +42,7 @@ class Test(unittest.TestCase):
 
         for num1, num2, expected in data:
             self.assertEqual(s.addStrings(num1, num2), expected)
+
 
 if __name__ == "__main__":
     unittest.main()
