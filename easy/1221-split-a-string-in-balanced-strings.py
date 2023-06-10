@@ -6,19 +6,14 @@ data = (("RLRRLLRLRL", 4), ("RLRRRLLRLL", 2), ("LLLLRRRR", 1))
 class Solution:
     def balancedStringSplit(self, s: str) -> int:
         result = 0
-        chars_count = 0
         balance = 0
         for char in s:
-            chars_count += 1
-
             if char == "R":
                 balance += 1
             else:
                 balance -= 1
-
-            if chars_count and balance == 0:
+            if not balance:
                 result += 1
-                chars_count = 0
                 balance = 0
         return result
 
