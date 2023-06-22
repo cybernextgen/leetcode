@@ -13,11 +13,6 @@ class Solution:
         return functools.reduce(
             lambda x, y: x + 1 if not len(str(y)) % 2 else x, nums, 0
         )
-        # counter = 0
-        # for n in nums:
-        #     if not len(str(n)) % 2:
-        #         counter += 1
-        # return counter
 
 
 class TestCase(unittest.TestCase):
