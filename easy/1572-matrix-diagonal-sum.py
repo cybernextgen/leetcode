@@ -9,16 +9,15 @@ data = (
 
 class Solution:
     def diagonalSum(self, mat: List[List[int]]) -> int:
-        current_row_index = left_col_index = result = 0
+        current_index = result = 0
         cols_count = len(mat[0])
-        while current_row_index < len(mat):
-            current_row = mat[current_row_index]
-            result += current_row[left_col_index]
-            right_col_index = cols_count - left_col_index - 1
-            if right_col_index != left_col_index:
-                result += current_row[right_col_index]
-            current_row_index += 1
-            left_col_index += 1
+        while current_index < cols_count:
+            current_row = mat[current_index]
+            result += current_row[current_index]
+            current_row[current_index] = 0
+            right_col_index = cols_count - current_index - 1
+            result += current_row[right_col_index]
+            current_index += 1
         return result
 
 
