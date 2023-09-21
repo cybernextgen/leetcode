@@ -26,9 +26,23 @@ class Solution:
                 return result
 
 
+class Solution2:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        less_elements_count = 0
+        equal_elements_count = 0
+        for n in nums:
+            if n < target:
+                less_elements_count += 1
+            elif n == target:
+                equal_elements_count += 1
+        return list(
+            range(less_elements_count, less_elements_count + equal_elements_count)
+        )
+
+
 class TestCase(unittest.TestCase):
     def test_solution(self):
-        s = Solution()
+        s = Solution2()
 
         for nums, target, expected in data:
             self.assertEqual(expected, s.targetIndices(nums, target))
