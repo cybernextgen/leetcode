@@ -6,8 +6,10 @@ data = ((4325, 59), (687, 75))
 
 class Solution:
     def splitNum(self, num: int) -> int:
-        digits = [int(d) for d in str(num)]
-        heapq.heapify(digits)
+        digits = []
+        for d in str(num):
+            heapq.heappush(digits, int(d))
+
         num1, num2 = "", ""
         try:
             while True:
