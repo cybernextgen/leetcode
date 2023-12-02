@@ -23,6 +23,22 @@ class Solution:
         return result
 
 
+class Solution2:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        counts = collections.Counter(chars)
+        result = 0
+        for word in words:
+            c = dict(counts)
+            for ch in word:
+                if ch in c and c[ch] > 0:
+                    c[ch] -= 1
+                else:
+                    break
+            else:
+                result += len(word)
+        return result
+
+
 class TestCase(unittest.TestCase):
     def test_solution(self):
         s = Solution()
