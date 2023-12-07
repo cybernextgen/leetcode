@@ -22,7 +22,7 @@ class Solution:
                 sum2 += int(num_as_str[index_right])
                 index_left += 1
                 index_right -= 1
-                
+
             if sum1 == sum2:
                 result += 1
 
