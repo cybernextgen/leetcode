@@ -7,20 +7,7 @@ data = (
     ("A1:F1", ["A1", "B1", "C1", "D1", "E1", "F1"]),
 )
 
-
-class Solution:
-    def cellsInRange(self, s: str) -> List[str]:
-        result = []
-        cell1, cell2 = s.split(":")
-        ord_initial_letter = ord(cell1[0])
-        ord_end_letter = ord(cell2[0])
-        initial_row_number = int(cell1[1])
-        end_row_number = int(cell2[1])
-        return [
-            f"{chr(l)}{n}"
-            for l in range(ord_initial_letter, ord_end_letter + 1)
-            for n in range(initial_row_number, end_row_number + 1)
-        ]
+w
 
 
 class TestCase(unittest.TestCase):
