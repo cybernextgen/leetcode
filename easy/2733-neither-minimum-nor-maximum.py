@@ -1,5 +1,5 @@
 import unittest
-from typing import List
+from typing import List, Optional
 
 data = (([2, 1, 3], 2), ([3, 2, 1, 4], 2), ([1, 2], -1), ([3, 30, 24], 24))
 
@@ -10,15 +10,15 @@ class Solution:
             return -1
 
         result = -1
-        min_num = None
-        max_num = None
+        min_num: Optional[int] = None
+        max_num: Optional[int] = None
 
         for num in nums:
-            if not min_num:
+            if min_num is None:
                 min_num = num
                 continue
 
-            if not max_num:
+            if max_num is None:
                 max_num = max(min_num, num)
                 min_num = min(min_num, num)
                 continue
