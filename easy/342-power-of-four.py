@@ -11,9 +11,14 @@ class Solution:
         return binary_repr.count("1", 1) == 0
 
 
+class Solution2:
+    def isPowerOfFour(self, n: int) -> bool:
+        return n > 0 and (n & n - 1) == 0 and (n & 0x55555555) == n
+
+
 class Test(unittest.TestCase):
     def test_parse(self):
-        s = Solution()
+        s = Solution2()
 
         for input_data, result in data:
             self.assertEqual(s.isPowerOfFour(input_data), result)
