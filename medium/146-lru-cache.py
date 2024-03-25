@@ -43,21 +43,24 @@ class LRUCache:
             self.tail = node
         self.head = node
 
+    def __rearrange_node(self, node: CacheNode):
+        if node != self.head:
+            self.__delete_node(node)
+            self.__insert_to_head(node)
+
     def get(self, key: int) -> int:
         if key not in self.nodes_map:
             return -1
 
         node = self.nodes_map[key]
-        if node != self.head:
-            self.__delete_node(node)
-            self.__insert_to_head(node)
+        self.__rearrange_node(node)
         return node.val
 
     def put(self, key: int, value: int) -> None:
         if key in self.nodes_map:
             node = self.nodes_map[key]
             node.val = value
-            self.get(key)
+            self.__rearrange_node(node)
         else:
             node = CacheNode(key, value)
             self.nodes_map[key] = node
