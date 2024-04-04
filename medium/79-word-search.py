@@ -25,7 +25,6 @@ class Solution:
                 if ch != word[0]:
                     continue
                 visited = set()
-                visited.add(self.__get_cell_id(board, row_index, col_index))
                 if self.__exist(board, word[1:], row_index, col_index, visited):
                     return True
         return False
@@ -41,6 +40,7 @@ class Solution:
         if not word:
             return True
         current_id = self.__get_cell_id(board, row_index, col_index)
+        visited.add(current_id)
         for next_row_index, next_col_index in [
             [row_index, col_index + 1],
             [row_index, col_index - 1],
@@ -48,43 +48,30 @@ class Solution:
             [row_index - 1, col_index],
         ]:
             if (
-                self.__get_char(board, next_row_index, next_col_index) != word[0]
+                next_row_index >= len(board)
+                or next_row_index < 0
+                or next_col_index >= len(board[0])
+                or next_col_index < 0
+                or board[next_row_index][next_col_index] != word[0]
                 or self.__get_cell_id(board, next_row_index, next_col_index) in visited
             ):
                 continue
 
-            next_visited = set(visited)
-            next_visited.add(self.__get_cell_id(board, next_row_index, next_col_index))
             if self.__exist(
                 board,
                 word[1:],
                 next_row_index,
                 next_col_index,
-                next_visited,
+                visited,
             ):
                 return True
+        visited.remove(current_id)
         return False
 
     def __get_cell_id(
         self, board: List[List[str]], row_index: int, col_index: int
     ) -> int:
         return row_index * len(board[0]) + col_index
-
-    def __get_char(
-        self,
-        board: List[List[str]],
-        row_index: int,
-        col_index: int,
-    ) -> Optional[str]:
-        if (
-            row_index >= len(board)
-            or row_index < 0
-            or col_index >= len(board[0])
-            or col_index < 0
-        ):
-            return
-
-        return board[row_index][col_index]
 
 
 class TestCase(unittest.TestCase):
