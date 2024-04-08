@@ -20,27 +20,30 @@ data = (
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        chars_stack = list(word)
         for row_index, row in enumerate(board):
             for col_index, ch in enumerate(row):
-                if ch != word[0]:
+                if ch != chars_stack[-1]:
                     continue
-                visited = set()
-                if self.__exist(board, word[1:], row_index, col_index, visited):
+                if self.__exist(board, chars_stack, row_index, col_index):
                     return True
         return False
 
     def __exist(
         self,
         board: List[List[str]],
-        word: str,
+        chars_stack: List[str],
         row_index: int,
         col_index: int,
-        visited: Set[int],
     ) -> bool:
-        if not word:
+        last_ch = chars_stack.pop()
+
+        if not chars_stack:
             return True
-        current_id = self.__get_cell_id(board, row_index, col_index)
-        visited.add(current_id)
+
+        last_board_ch = board[row_index][col_index]
+        board[row_index][col_index] = "#"
+
         for next_row_index, next_col_index in [
             [row_index, col_index + 1],
             [row_index, col_index - 1],
@@ -52,26 +55,16 @@ class Solution:
                 or next_row_index < 0
                 or next_col_index >= len(board[0])
                 or next_col_index < 0
-                or board[next_row_index][next_col_index] != word[0]
-                or self.__get_cell_id(board, next_row_index, next_col_index) in visited
+                or board[next_row_index][next_col_index] != chars_stack[-1]
             ):
                 continue
 
-            if self.__exist(
-                board,
-                word[1:],
-                next_row_index,
-                next_col_index,
-                visited,
-            ):
+            if self.__exist(board, chars_stack, next_row_index, next_col_index):
                 return True
-        visited.remove(current_id)
-        return False
 
-    def __get_cell_id(
-        self, board: List[List[str]], row_index: int, col_index: int
-    ) -> int:
-        return row_index * len(board[0]) + col_index
+        board[row_index][col_index] = last_board_ch
+        chars_stack.append(last_ch)
+        return False
 
 
 class TestCase(unittest.TestCase):
