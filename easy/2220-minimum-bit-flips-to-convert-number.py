@@ -18,6 +18,11 @@ class Solution:
         return result
 
 
+class Solution2:
+    def minBitFlips(self, start: int, goal: int) -> int:
+        return (start ^ goal).bit_count()
+
+
 if __name__ == "__main__":
     for start, goal, expected in ((10, 7, 3), (3, 4, 3)):
-        assert Solution().minBitFlips(start, goal) == expected
+        assert Solution2().minBitFlips(start, goal) == expected
