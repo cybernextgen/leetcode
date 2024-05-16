@@ -1,3 +1,6 @@
+from typing import Optional
+from utils.tree_node import TreeNode
+
 class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
         if root.val < 2:
